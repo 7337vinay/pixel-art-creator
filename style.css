@@ -1,0 +1,465 @@
+:root {
+    /* Default Theme (Light Mode) */
+    --bg-color: #f4f4f9;
+    --main-color: #333;
+    --accent-color: #007bff;
+    --border-color: #ccc;
+    --container-bg: #fff;
+    --pixel-border-color: rgba(0, 0, 0, 0.05);
+    --button-hover-color: #e6e6e6;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.5);
+
+    /* 3D Button Colors */
+    --btn-face-color: #3498db;
+    --btn-shadow-color: #2980b9;
+    --btn-active-shadow-color: #2c3e50;
+    --btn-text-color: #fff;
+    --active-border-color: #007bff;
+
+    /* Grid variables */
+    --grid-size: 16;
+    --pixel-size: 20px;
+    --grid-gap: 1px;
+    --grid-total-size: calc(var(--grid-size) * var(--pixel-size) + (var(--grid-size) - 1) * var(--grid-gap));
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --bg-color: #121212;
+    --main-color: #e0e0e0;
+    --accent-color: #bb86fc;
+    --border-color: #555;
+    --container-bg: #1e1e1e;
+    --pixel-border-color: rgba(255, 255, 255, 0.1);
+    --button-hover-color: #2c2c2c;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.7);
+    --btn-face-color: #bb86fc;
+    --btn-shadow-color: #9f73d4;
+    --btn-active-shadow-color: #7b4eb2;
+    --active-border-color: #bb86fc;
+}
+
+/* Retro Theme */
+body.retro-theme {
+    --bg-color: #f3d9b1;
+    --main-color: #362f2d;
+    --accent-color: #d18d45;
+    --border-color: #695d51;
+    --container-bg: #e8c7a2;
+    --pixel-border-color: rgba(54, 47, 45, 0.1);
+    --button-hover-color: #d8b789;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.5);
+    --btn-face-color: #d18d45;
+    --btn-shadow-color: #b97737;
+    --btn-active-shadow-color: #925c27;
+    --active-border-color: #d18d45;
+}
+
+/* Neon Theme */
+body.neon-theme {
+    --bg-color: #000;
+    --main-color: #fff;
+    --accent-color: #00ff00;
+    --border-color: #ff00ff;
+    --container-bg: #111;
+    --pixel-border-color: rgba(255, 255, 255, 0.1);
+    --button-hover-color: #333;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.8);
+    --btn-face-color: #00ff00;
+    --btn-shadow-color: #008000;
+    --btn-active-shadow-color: #005000;
+    --active-border-color: #00ff00;
+}
+
+/* Pastel Theme */
+body.pastel-theme {
+    --bg-color: #b0e0e6;
+    --main-color: #4682b4;
+    --accent-color: #c9a0dc;
+    --border-color: #87ceeb;
+    --container-bg: #f0f8ff;
+    --pixel-border-color: rgba(70, 130, 180, 0.1);
+    --button-hover-color: #e0eaf6;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.4);
+    --btn-face-color: #c9a0dc;
+    --btn-shadow-color: #b286c4;
+    --btn-active-shadow-color: #966da3;
+    --active-border-color: #c9a0dc;
+}
+
+/* Base Styles (apply to all themes) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    background-image: linear-gradient(45deg, var(--bg-color) 25%, transparent 25%, transparent 75%, var(--bg-color) 75%, var(--bg-color)), linear-gradient(45deg, var(--bg-color) 25%, transparent 25%, transparent 75%, var(--bg-color) 75%, var(--bg-color));
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+
+.creator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--container-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    overflow: hidden;
+}
+
+.creator-container::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    z-index: -1;
+    transition: box-shadow 0.3s ease;
+}
+
+.creator-container:hover::before {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.theme-controls {
+    margin-top: 20px;
+}
+
+.size-controls {
+    gap: 10px;
+}
+
+.save-controls {
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-3d, input[type="number"], #colorPicker, .history-box, select {
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--container-bg);
+    color: var(--main-color);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s;
+}
+
+/* Base for the 3D button effect */
+.btn-3d {
+    color: var(--btn-text-color);
+    background-color: var(--btn-face-color);
+    border: none;
+    box-shadow: 0 6px 0 var(--btn-shadow-color);
+}
+
+/* 3D Button Hover and Active states */
+.btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 var(--btn-shadow-color);
+}
+.btn-3d:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 var(--btn-shadow-color);
+}
+
+/* Active state for selected tool (replaces .tool-button.active) */
+.btn-3d.active {
+    transform: translateY(0px);
+    box-shadow: 0 0px 0 var(--btn-active-shadow-color), 0 0 10px var(--btn-active-shadow-color);
+}
+
+
+#colorPicker {
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+
+#colorPicker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+#colorPicker::-webkit-color-swatch {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+/* Active state for non-button tools */
+#colorPicker.active, .history-box.active {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+/* Color History Styles */
+.color-history-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#colorHistory {
+    display: flex;
+    gap: 5px;
+}
+
+.history-box {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.history-box:hover {
+    transform: scale(1.1);
+}
+
+/* Pixel Counter and Progress Bar Styles */
+.pixel-counter-container {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 380px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 15px;
+    background-color: var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+#grid-container {
+    display: grid;
+    /* Correct way to create a pixelated grid - columns are fixed size */
+    grid-template-columns: repeat(var(--grid-size), var(--pixel-size));
+    grid-template-rows: repeat(var(--grid-size), var(--pixel-size));
+    gap: var(--grid-gap);
+    /* Correct way to set the total size of the grid container */
+    width: var(--grid-total-size);
+    height: var(--grid-total-size);
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid var(--border-color);
+    background-color: var(--border-color);
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    touch-action: none;
+}
+
+.grid-cell {
+    /* The gap on the grid container will now create the grid lines */
+    background-color: #fff;
+    border: none; /* Removed the pixel border to prevent distortion */
+    transition: background-color 0.1s;
+    cursor: crosshair;
+}
+
+/* Help Button */
+.help-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.help-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modal-overlay-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: var(--container-bg);
+    margin: auto;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    position: relative;
+    color: var(--main-color);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content h3 {
+    color: var(--main-color);
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.modal-content ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.close-button {
+    color: var(--main-color);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Responsive design */
+@media (max-width: 500px) {
+    #grid-container {
+        width: 90vw;
+        height: 90vw;
+        gap: 0;
+        grid-template-columns: repeat(var(--grid-size), 1fr);
+        grid-template-rows: repeat(var(--grid-size), 1fr);
+    }
+    .grid-cell {
+        border-radius: 0;
+        border: none;
+    }
+    .creator-container {
+        padding: 1rem;
+    }
+    .pixel-counter-container {
+        max-width: 90vw;
+    }
+    .help-button {
+        position: static;
+        margin-top: 10px;
+        width: 100%;
+    }
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .modal-content {
+        padding: 15px;
+    }
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
+    .controls {
+        gap: 10px;
+    }
+    button, input[type="number"], select {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .color-history-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #colorHistory {
+        width: 100%;
+        justify-content: center;
+    }
+}

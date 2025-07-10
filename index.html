@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Art Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Pixel Art Creator</h1>
+        <button id="helpButton" class="btn-3d">Help</button>
+    </header>
+
+    <main class="creator-container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="colorPicker">Color:</label>
+                <input type="color" id="colorPicker" value="#000000">
+            </div>
+            <div class="color-history-container">
+                <label>Recent Colors:</label>
+                <div id="colorHistory"></div>
+            </div>
+            
+            <button id="eraseButton" class="btn-3d">Eraser</button>
+            <button id="hoverPaintButton" class="btn-3d">Hover Paint</button>
+            <button id="clearButton" class="btn-3d">Clear</button>
+        </div>
+
+        <div class="controls size-controls">
+            <label for="gridSize">Grid Size:</label>
+            <input type="number" id="gridSize" value="16" min="1" max="64">
+            <button id="createGridButton" class="btn-3d">Create Grid</button>
+        </div>
+
+        <div class="controls save-controls">
+            <button id="saveButton" class="btn-3d">Save</button>
+            <button id="loadButton" class="btn-3d">Load</button>
+            <button id="resetButton" class="btn-3d">Reset Data</button>
+            <button id="downloadButton" class="btn-3d">Download</button>
+        </div>
+
+        <div class="pixel-counter-container">
+            <p>
+                Pixels Painted: <span id="paintedPixels">0</span> / <span id="totalPixels">0</span>
+            </p>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div id="grid-container"></div>
+
+        <div class="controls theme-controls">
+            <div class="control-group">
+                <label for="themeSelector">Theme:</label>
+                <select id="themeSelector">
+                    <option value="default">Default</option>
+                    <option value="retro">Retro</option>
+                    <option value="neon">Neon</option>
+                    <option value="pastel">Pastel</option>
+                </select>
+            </div>
+            <button id="darkModeToggle" class="btn-3d">Toggle Dark Mode</button>
+        </div>
+    </main>
+
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>How to Use the Pixel Art Creator</h2>
+            <div class="instructions">
+                <h3>1. Pick a Color</h3>
+                <p>Use the <strong>color picker</strong> to select your desired drawing color. Your last 5 unique colors will appear in the "Recent Colors" history for quick access.</p>
+                
+                <h3>2. Paint Cells</h3>
+                <p><strong>Click and Drag:</strong> Click and hold your mouse button (or touch and drag on mobile) across the grid cells to paint continuously.</p>
+                <p><strong>Hover Paint Mode:</strong> Click the "Hover Paint" button to toggle this mode. When active, simply moving your mouse over cells will paint them without needing to hold the button down. Click "Hover Paint" again to turn it off.</p>
+                
+                <h3>3. Erase Pixels</h3>
+                <p>Click the <strong>"Eraser"</strong> button to switch to eraser mode. Now, clicking or dragging will turn cells white.</p>
+
+                <h3>4. Manage Your Grid</h3>
+                <ul>
+                    <li><strong>Clear:</strong> Resets all cells on the grid to white.</li>
+                    <li><strong>Grid Size:</strong> Enter a number between 1 and 64 and click "Create Grid" to resize your canvas.</li>
+                </ul>
+
+                <h3>5. Save, Load & Download</h3>
+                <ul>
+                    <li><strong>Save:</strong> Stores your current artwork in your browser's local storage.</li>
+                    <li><strong>Load:</strong> Retrieves your last saved artwork.</li>
+                    <li><strong>Reset Data:</strong> Permanently deletes your saved artwork from local storage.</li>
+                    <li><strong>Download:</strong> Saves your pixel art as a PNG image file to your device.</li>
+                </ul>
+
+                <h3>6. Customize the Look</h3>
+                <ul>
+                    <li><strong>Theme Selector:</strong> Choose from "Default", "Retro", "Neon", or "Pastel" themes to change the app's appearance.</li>
+                    <li><strong>Toggle Dark Mode:</strong> Switch between light and dark versions of the current theme.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
